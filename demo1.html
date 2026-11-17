@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Bank App Part 3</title>
+</head>
+
+<body>
+
+    <h1>Bank App</h1>
+
+    <h2>Let's Calculate</h2>
+
+    <h3>Balance: ₹<span id="balance">1000</span></h3>
+
+    <input type="number" id="amount" placeholder="Enter amount">
+
+    <button id="credit">Credit</button>
+    <button id="debit">Debit</button>
+
+    <p id="message"></p>
+
+    <script>
+
+        let balance = 1000;
+
+        const balanceDisplay = document.getElementById("balance");
+        const amountInput = document.getElementById("amount");
+        const message = document.getElementById("message");
+
+        function updateBalance() {
+            balanceDisplay.innerText = balance;
+        }
+
+        document.getElementById("credit").addEventListener("click", function () {
+
+            let amount = Number(amountInput.value);
+
+            if (amount > 0) {
+                balance = balance + amount;
+                message.innerText = "Money Added Successfully!";
+                updateBalance();
+            } else {
+                message.innerText = "Enter a valid amount!";
+            }
+
+            amountInput.value = "";
+
+        });
+
+        document.getElementById("debit").addEventListener("click", function () {
+
+            let amount = Number(amountInput.value);
+
+            if (amount <= 0) {
+                message.innerText = "Enter a valid amount!";
+            }
+            else if (amount > balance) {
+                message.innerText = "Insufficient Balance!";
+            }
+            else {
+                balance = balance - amount;
+                message.innerText = "Money Debited Successfully!";
+                updateBalance();
+            }
+
+            amountInput.value = "";
+
+        });
+
+    </script>
+
+</body>
+
+</html>
